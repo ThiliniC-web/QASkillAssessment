@@ -25,7 +25,7 @@ public class EbayMainTest extends BrowserManager {
         productPage = new ProductPage(page);
     }
 
-    // Extract price number from price text e.g "US $2,000.00" -> 2000.0
+    // Extract price number from price-without price conversion
     public double extractPrice(String priceText) {
         if (priceText == null || priceText.isEmpty()) return 0.0;
         String cleaned = priceText.replaceAll("[^0-9.]", "");
@@ -34,7 +34,7 @@ public class EbayMainTest extends BrowserManager {
         return Double.parseDouble(cleaned);
     }
 
-    @Test
+    @Test(groups = {"smoke", "regression"})
     public void verifyRelatedProductsOnWalletPage() {
 
         // Step 1 - Search for wallet

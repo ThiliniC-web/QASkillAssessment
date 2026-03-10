@@ -33,7 +33,7 @@ public class ProductPage {
         return page.locator(RELATED_ITEMS_SECTION).first().isVisible();
     }
 
-    // Get all similar items
+    // Get all the similar items
     public Locator getSimilarItems() {
         return page.locator(RELATED_ITEMS_SECTION).first().locator(RELATED_ITEM);
     }

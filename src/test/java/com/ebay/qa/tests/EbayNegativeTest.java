@@ -28,7 +28,7 @@ public class EbayNegativeTest extends BrowserManager {
         productPage = new ProductPage(page);
     }
 
-    @Test
+    @Test(groups = {"regression"})
     public void searchWithEmptyString() {
         // Close popup if appears
         searchPage.closePopupIfPresent();
@@ -38,7 +38,7 @@ public class EbayNegativeTest extends BrowserManager {
         page.locator("#gh-search-btn").click();
         Waits.waitForPageLoad(page);
 
-        // Verify eBay shows all categories page
+        // Verify all categories
         String currentUrl = page.url();
         System.out.println("Current URL: " + currentUrl);
         Assert.assertTrue(currentUrl.contains("all-categories"),
@@ -46,7 +46,7 @@ public class EbayNegativeTest extends BrowserManager {
         System.out.println("Empty search assertion passed!");
     }
 
-    @Test
+    @Test(groups = {"regression"})
     public void verifyNoDuplicateRelatedProducts() {
         // Search and navigate to product page
         searchPage.closePopupIfPresent();
@@ -56,7 +56,7 @@ public class EbayNegativeTest extends BrowserManager {
         page.navigate(productUrl);
         Waits.waitForPageLoad(page);
 
-        // Scroll to similar items and wait for them to load
+        // Scroll to related items and wait for products to load
         productPage.scrollToSimilarItems();
         productPage.getSimilarItems()
                 .first()
@@ -77,14 +77,14 @@ public class EbayNegativeTest extends BrowserManager {
             titles.add(title);
         }
 
-        // Verify no duplicates
+        // Verify no duplicates product available
         long uniqueCount = titles.stream().distinct().count();
         Assert.assertEquals(uniqueCount, titles.size(),
                 "Duplicate related products found!");
         System.out.println("No duplicate related products found!");
     }
 
-    @Test
+    @Test(groups = {"regression"})
     public void verifyAllRelatedProductLinksWork() {
         // Search and navigate to product page
         searchPage.closePopupIfPresent();
@@ -94,7 +94,7 @@ public class EbayNegativeTest extends BrowserManager {
         page.navigate(productUrl);
         Waits.waitForPageLoad(page);
 
-        // Scroll to similar items and wait for them to load
+        // Scroll to related items and wait for them to load
         productPage.scrollToSimilarItems();
         productPage.getSimilarItems()
                 .first()
@@ -115,7 +115,7 @@ public class EbayNegativeTest extends BrowserManager {
             System.out.println("Collected URL " + (i + 1) + ": " + itemUrl);
         }
 
-        // Navigate to each URL and verify no 404
+        // Navigate to each URL and verify no 404 error
         for (int i = 0; i < itemUrls.size(); i++) {
             page.navigate(itemUrls.get(i));
             Waits.waitForPageLoad(page);

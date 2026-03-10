@@ -4,28 +4,25 @@
 ## Project Structure
 
 ```
+
 QASkillAssessment/
-├── src/
-│   ├── main/
-│   │   └── java/
-│   │       └── com/ebay/qa/
-│   │           ├── base/
-│   │           │   └── BrowserManager.java      ← Browser setup and teardown
-│   │           ├── pages/
-│   │           │   ├── SearchPage.java           ← Page Object for eBay search
-│   │           │   └── ProductPage.java          ← Page Object for product detail page
-│   │           └── utils/
-│   │               ├── ConfigReader.java         ← Base URL, timeouts, constants
-│   │               └── WaitUtils.java            ← Shared wait and scroll methods
-│   └── test/
-│       └── java/
-│           └── com/ebay/qa/tests/
-│               ├── EbayMainTest.java             ← Positive test cases
-│               └── EbayNegativeTest.java         ← Negative test cases
-├── src/test/resources/
-│   └── testng.xml                               ← TestNG suite configuration
-├── pom.xml                                      ← Maven dependencies
-└── README.md
+├── src/main/java/com/ebay/qa/
+│   ├── base/
+│   │   └── BrowserManager.java        ← Initializes and manages Playwright browser, context and page
+│   ├── pages/
+│   │   ├── SearchPage.java            ← Page Object for eBay search — search, popup, get first product URL
+│   │   └── ProductPage.java           ← Page Object for product detail page — price, similar items, scroll
+│   └── utils/
+│       ├── ConfigReader.java          ← Stores constants — base URL, timeout, max/min product count
+│       └── WaitUtils.java             ← Reusable wait and scroll methods used across all tests
+├── src/test/java/com/ebay/qa/tests/
+│   ├── EbayMainTest.java              ← Positive test cases — verifies related products section, count and prices
+│   └── EbayNegativeTest.java          ← Negative test cases — empty search, duplicate products, broken links
+├── testng.xml                         ← TestNG suite configuration — defines which tests to run
+├── pom.xml                            ← Maven dependencies — Playwright, TestNG, Java version
+├── README.md                          ← Project documentation — structure, tech stack, how to run tests
+└── QA_Skills_Assessment.pdf          ← Manual testing document — test strategy, test cases, bug reports
+
 ```
 
 ---
@@ -87,3 +84,5 @@ setHeadless(false) — browser is visible during test execution
 
 ## Author
 QA Engineer — eBay Related Products Skills Assessment
+
+
