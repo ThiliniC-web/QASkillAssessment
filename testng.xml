@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="EbayRegressionSuite">
+    <test name="MainTests">
+        <classes>
+            <class name="com.ebay.qa.tests.EbayMainTest"/>
+        </classes>
+    </test>
+    <test name="NegativeTests">
+        <classes>
+            <class name="com.ebay.qa.tests.EbayNegativeTest"/>
+        </classes>
+    </test>
+</suite>
