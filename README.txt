@@ -4,7 +4,6 @@
 ## Project Structure
 
 ```
-
 QASkillAssessment/
 ├── src/main/java/com/ebay/qa/
 │   ├── base/
@@ -65,6 +64,14 @@ QASkillAssessment/
 | ConfigReader            | Single place for all config values — easy to update |
 | WaitUtils               | Reusable wait methods — no hardcoded Thread.sleep |
 
+## Test Groups
+
+| Group        | Tests Included                      | Purpose |
+|------------- |-------------------------------------|---------|
+| `smoke`      | `verifyRelatedProductsOnWalletPage` | Quick sanity check — run after every deployment |
+| `regression` | All 4 tests                         | Full regression — run before release |
+
+
 ## Run Tests
 
 # Run full suite
@@ -76,6 +83,9 @@ mvn test -Dtest="EbayMainTest"
 # Run only negative tests
 mvn test -Dtest="EbayNegativeTest"
 
+# Run regression tests only
+mvn test -Dgroups="regression"
+
 ---
 
 ## Notes
@@ -83,6 +93,6 @@ setHeadless(false) — browser is visible during test execution
 
 
 ## Author
-QA Engineer — eBay Related Products Skills Assessment
+Thilini Chandrasena — eBay Main and Related Products Skills Assessment
 
 
